@@ -29,6 +29,11 @@ var onChosenFileToOpen = function(theFileEntry) {
 	readFileIntoEditor(theFileEntry);
 }
 
+var onChosenFileToSave = function(theFileEntry) {
+	setFile(theFileEntry, true);
+	writeEditorToFile(theFileEntry);
+}
+
 function newFile() {
 	fileEntry = null;
 	hasWriteAccess = false;
@@ -51,6 +56,19 @@ function readFileIntoEditor(theFileEntry) {
 	});
 }
 
+function writeEditorToFile(theFileEntry) {
+	var str = editor.input;
+	fs.writeFile(theFileEntry, editor.input, function(err) {
+		if (err) {
+			console.log('Write failed: ' + err);
+			return;
+		}
+
+		handleDocumentChange(theFileEntry);
+		console.log('Write complete.');
+	})
+}
+
 function handleNewButton() {
 	console.log('New button has been clicked!');
 
@@ -69,10 +87,22 @@ function handleOpenButton() {
 	});
 }
 
+function handleSaveButton() {
+	if (fileEntry && hasWriteAccess) {
+		writeEditorToFile(fileEntry);
+	} else {
+		dialog.showSaveDialog(function(filename) {
+			onChosenFileToSave(filename.toString(), true);
+		});
+	}
+}
+
 onload = function() {
 	newButton = document.getElementById('new');
 	openButton = document.getElementById('open');
+	saveButton = document.getElementById('save');
 
 	newButton.addEventListener('click', handleNewButton);
 	openButton.addEventListener('click', handleOpenButton);
+	saveButton.addEventListener('click', handleSaveButton);
 };
