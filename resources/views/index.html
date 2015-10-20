@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Kami v0.0.1</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./../css/kami.css" media="screen" title="no title" charset="utf-8">
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a href="#" id="new"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> New</a></li>
+					<li><a href="#" id="open"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Open</a></li>
+					<li><a href="#" id="save"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="editor">
+			<textarea v-model="input"></textarea>
+			<div v-html="input | marked" id="preview"></div>
+		</div>
+
+		<script src="./../../app/kami.js"></script>
+	</body>
+</html>
