@@ -2,17 +2,18 @@ var newButton, openButton, saveButton;
 var hasWriteAccess;
 var editor;
 var fileEntry;
+
 var remote = require('remote');
-var clipboard = require('clipboard');
 var dialog = remote.require('dialog');
 var fs = require('fs');
 var marked = require('marked');
 var Vue = require('vue');
+var notifier = require('node-notifier');
 
 editor = new Vue({
 	el: '#editor',
 	data: {
-		input: ''
+		input: '# Hello World!'
 	},
 	filters: {
 		marked: marked
@@ -25,7 +26,7 @@ function handleDocumentChange(title) {
 
 var onChosenFileToOpen = function(theFileEntry) {
 	console.log(theFileEntry);
-	setFile(theFileEntry, false);
+	setFile(theFileEntry, true);
 	readFileIntoEditor(theFileEntry);
 }
 
@@ -66,7 +67,13 @@ function writeEditorToFile(theFileEntry) {
 
 		handleDocumentChange(theFileEntry);
 		console.log('Write complete.');
-	})
+		notifier.notify({
+			title: 'File saved successfully',
+			message: theFileEntry
+		}, function(err, response) {
+			//
+		});
+	});
 }
 
 function handleNewButton() {
@@ -88,6 +95,9 @@ function handleOpenButton() {
 }
 
 function handleSaveButton() {
+	console.log(fileEntry);
+	console.log(hasWriteAccess);
+
 	if (fileEntry && hasWriteAccess) {
 		writeEditorToFile(fileEntry);
 	} else {

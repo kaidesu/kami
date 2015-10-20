@@ -1,2 +1,2 @@
 # Kami
-Simple markdown editor built in Electron.
+Kami is a simple Markdown text editor with live preview capabilities built in Electron.
