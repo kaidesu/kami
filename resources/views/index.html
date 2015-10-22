@@ -18,9 +18,14 @@
 			</div>
 		</nav>
 
-		<div id="editor">
-			<textarea v-model="input"></textarea>
-			<div v-html="input | marked" id="preview"></div>
+		<div class="container-fluid">
+			<div class="row body" id="kami-editor">
+				<div class="col-xs-6" id="editor">
+					<textarea v-model="input"></textarea>
+				</div>
+
+				<div class="col-xs-6" id="preview" v-html="input | marked"></div>
+			</div>
 		</div>
 
 		<script src="./../../app/kami.js"></script>

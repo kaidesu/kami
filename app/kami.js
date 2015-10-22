@@ -11,7 +11,7 @@ var Vue = require('vue');
 var notifier = require('node-notifier');
 
 editor = new Vue({
-	el: '#editor',
+	el: '#kami-editor',
 	data: {
 		input: '# Hello World!'
 	},
