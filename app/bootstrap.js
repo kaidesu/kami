@@ -14,8 +14,8 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
 	mainWindow = new BrowserWindow({
 		'auto-hide-menu-bar': true,
-		width: 800,
-		height: 600
+		width: 1024,
+		height: 768
 	});
 
 	mainWindow.loadUrl('file://' + __dirname + '/../resources/views/index.html');
