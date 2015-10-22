@@ -1,6 +1,6 @@
 {
   "name": "kami-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "app/bootstrap.js",
   "dependencies": {
     "electron-prebuilt": "^0.34.0",
